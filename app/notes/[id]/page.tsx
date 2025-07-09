@@ -4,13 +4,15 @@ import NoteDetailsClient from './NoteDetails.client';
 
 
 type Props = {
-  params:{id: string};
+  params:Promise<{id: string}>;
 }
 
 
 export async function generateMetadata({params} : Props) {
 
-   const idk = Number(params.id);
+   const id = await params;
+   const idk = Number(id);
+
 
    const note = await fetchNoteById(idk);
 
@@ -40,14 +42,15 @@ export async function generateMetadata({params} : Props) {
 
 
 const NoteDetails = async ({params}: Props) => {
-const id = Number(params.id);
+const id = await params;
+const idk = Number(id);
 
 const queryClient = new QueryClient();
 
 
 await queryClient.prefetchQuery({
 queryKey:["note", id ],
-queryFn: () => fetchNoteById(id),
+queryFn: () => fetchNoteById(idk),
 })
 
 
@@ -56,7 +59,7 @@ queryFn: () => fetchNoteById(id),
 return (
   <div>
     <HydrationBoundary state={dehydrate(queryClient)}>
-    <NoteDetailsClient id={id} />
+    <NoteDetailsClient id={idk} />
     </HydrationBoundary>
   </div>
 )
