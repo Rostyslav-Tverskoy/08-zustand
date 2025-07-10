@@ -21,7 +21,7 @@ export const useNoteDraft = create<NoteDraftStore>()(
         draft: {
             title: "",
             content: "",
-            tag: ""
+            tag: "Todo"
         },
         setDraft: (newNote:initialDraft) => {
             return set({draft: newNote})
