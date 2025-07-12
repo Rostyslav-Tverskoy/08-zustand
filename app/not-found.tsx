@@ -7,8 +7,8 @@ export const metadata:Metadata = {
     title: "Page Not Found",
     description: "There is no page to find",
    openGraph: {
-    title: "NoteApp",
-    description: "NoteApp created by NextJs",
+    title: "Not Found",
+    description: "Not Found Page",
     url: `https://07-routing-nextjs-gamma-two.vercel.app/`,
     images: [
       {url: `https://ac.goit.global/fullstack/react/notehub-og-meta.jpg`,
